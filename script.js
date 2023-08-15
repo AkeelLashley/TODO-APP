@@ -76,7 +76,7 @@ function renderTodos(todos) {
           const status = todo.completed ? "✅ Completed" : "❌ Not Completed";
           return `
         <div class="todo-card">
-          
+            <p>User ID: ${todo.userId} </p>
             <h2>${todo.title}</h2>
             <p>Status: ${status}</p>
            
@@ -88,15 +88,15 @@ function renderTodos(todos) {
   dataContainer.innerHTML = todoCards;
 }
 
-const Greetings = () => {
-  return `
-        <div class="todo-card">
-            <p>User ID: ${todo.userId} </p>
-            <h2>${todo.title}</h2>
-            <p>Status: ${status}</p>
-        </div>
-    `;
-};
+// const Greetings = () => {
+//   return `
+//         <div class="todo-card">
+//             <p>User ID: ${todo.userId} </p>
+//             <h2>${todo.title}</h2>
+//             <p>Status: ${status}</p>
+//         </div>
+//     `;
+// };
 
 // // Global variables
 // let allTodos = [];
@@ -140,11 +140,3 @@ const Greetings = () => {
 //   );
 //   renderTodos(filteredTodos);
 // }
-
-
-UI/UX
-FRONT-END DEV
-BACK END DEV
-DEV OPS
-SCRUM MASTER
-PM
