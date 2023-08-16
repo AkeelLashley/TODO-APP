@@ -1,5 +1,42 @@
 let allTodos = [];
 let isLoading = false;
+
+function filterByUserId() {
+  // Get the search term and filter the todos based on the title
+  const searchTerm = document.getElementById("searchField").value;
+  Number(searchTerm)
+  const filteredTodos = allTodos.filter(
+    (todo) => todo.userId === Number(searchTerm)
+  );
+  renderTodos(filteredTodos);
+}
+
+// function fetchTodos() {
+//   // The endpoint for fetching sample data (in this case, a list of todos)
+//   const apiEndpoint = "https://jsonplaceholder.typicode.com/todos";
+
+//   fetch(apiEndpoint)
+//     .then((response) => {
+//       // Check if the fetch was successful
+//       if (!response.ok) {
+//         throw new Error("Network response was not ok");
+//       }
+//       return response.json();
+//     })
+//     .then((data) => {
+//       // Process and display the fetched data
+//       console.log(data);
+// allTodos = data
+//       renderTodos(allTodos);
+//     })
+//     .catch((error) => {
+//       console.error(
+//         "There was a problem with the fetch operation:",
+//         error.message
+//       );
+//     });
+// }
+
 async function fetchTodos() {
   const apiEndpoint = "https://jsonplaceholder.typicode.com/todos";
   try {
@@ -10,6 +47,7 @@ async function fetchTodos() {
     }
 
     allTodos = await response.json();
+    console.log(allTodos);
     renderTodos(allTodos);
     isLoading = true;
     console.log("FETCHING DATA...");
@@ -24,15 +62,6 @@ async function fetchTodos() {
     console.log("END OF FETCHING DATA...");
   }
 }
-
-// function Greetings() {
-// console.log("Hello");
-// }
-
-// ES6 - New way of doing things
-// const Greetings = () => {
-//   console.log("Hello")
-// }
 
 function renderTodos(todos) {
   const dataContainer = document.getElementById("todoDataDisplay");
@@ -75,12 +104,11 @@ function renderTodos(todos) {
         .map((todo) => {
           const status = todo.completed ? "✅ Completed" : "❌ Not Completed";
           return `
-        <div class="todo-card">
-            <p>User ID: ${todo.userId} </p>
-            <h2>${todo.title}</h2>
-            <p>Status: ${status}</p>
-           
-        </div>
+            <div class="todo-card">
+                <p>User ID: ${todo.userId} </p>
+                <h2>${todo.title}</h2>
+                <p>Status: ${status}</p>
+            </div>
     `;
         })
         .join("");
